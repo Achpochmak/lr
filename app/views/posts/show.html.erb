@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+  <div class="box">
+  	<article class="media">
+<div class="media-content">
+  			<div class="content">
+  				<strong> Post</strong>
+  				<p><%= @post.post %></p>
+  			</div>
+        </div>
+
+<%= link_to 'Edit', edit_post_path(@post), class: "button is-info" %> |
+<%= link_to 'Back', posts_path, class: "button is-info" %>
+<%= button_to "Destroy this post", @post, method: :delete , class: "button is-info"%>
+</div>
+</article>
