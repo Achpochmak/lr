@@ -1,29 +1,25 @@
-require 'spec_helper'
+# frozen_string_literal: true
 
-RSpec.describe 'PostsController', type: :feature do
-    scenario 'input' do
-        visit 'http://localhost:3000/users/sign_up'
-        fill_in 'name', with: 'test@com'
-        fill_in 'username', with: 'test@com'
-        fill_in 'email', with: 'test@com'
-        fill_in 'password', with: 'test@com'
-        fill_in 'password_confirmation', with: 'test@com'
-        click_on 'Sign up'
-#   describe "anonymous user" do
-#     before :each do
-#       # This simulates an anonymous user
-#       login_with nil
-#     end
+require './test/test_helper'
 
-#     it "should be redirected to signin" do
-#       get :index
-#       expect( response ).to redirect_to( new_user_session_path )
-#     end
-#     it "should let a user see all the posts" do
-#         login_with create( :user )
-#         get :index
-#         expect( response ).to render_template( :index )
-#       end
-#  end
-    end
+class UserFlowsTest < ActionDispatch::IntegrationTest
+  test 'authentication' do
+    get '/users/sign_in'
+    assert_response :success
+    post '/users/sign_in', params: { session: {
+      username: users(:user_1).username,
+      password: users(:user_1).password
+    } }
+  end
+
+  test 'create users' do
+    post '/users', params: { user: { username: 'test', name: 'test', password: '12345', email: 'test@.com' } }
+    res = User.find_by_username('test')
+    assert_not_nil res
+  end
+  test 'create post' do
+    Post.create post: 'NewMessage', user_id: users(:user_1).id
+    res = Post.find_by(post: 'NewMessage')
+    assert_equal 'NewMessage', res.post
+  end
 end

@@ -1,15 +1,15 @@
-<p id="notice"><%= notice %></p>
+
   <div class="box">
   	<article class="media">
 <div class="media-content">
   			<div class="content">
-  				<strong> Post</strong>
+  				<strong> <%= t('new.post')%></strong>
   				<p><%= @post.post %></p>
   			</div>
         </div>
 
-<%= link_to 'Edit', edit_post_path(@post), class: "button is-info" %> |
-<%= link_to 'Back', posts_path, class: "button is-info" %>
-<%= button_to "Destroy this post", @post, method: :delete , class: "button is-info"%>
+<%= link_to t('new.edit'), edit_post_path(@post), class: "button is-primary" %> |
+<%= link_to t('new.back'), posts_path, class: "button is-primary" %>
+<%= button_to t("new.destroy"), @post, method: :delete , class: "button is-primary"%>
 </div>
 </article>

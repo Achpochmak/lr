@@ -13,12 +13,32 @@
  *= require_tree .
  *= require_self
  */
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+$purple: #3298dc;
+$pink: #00d1b2;
+$brown: #757763;
+$beige-light: #1b72ac;
+$beige-lighter: #EFF0EB;
+
+$family-sans-serif: "Nunito", sans-serif;
+$grey-dark: $brown;
+$grey-light: $beige-light;
+$navbar: $purple;
+$link: $pink;
+
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+// Import the rest of Bulma
 @import "bulma";
+
 .navbar-brand .title {
 	color: white;
 }
 
-// round images
 .image {
 	border-radius: 50%;
 	img {
@@ -28,3 +48,6 @@
 .notification:not(:last-child) {
 	margin-bottom: 0;
 }
+
+
+
